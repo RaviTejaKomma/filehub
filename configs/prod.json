@@ -1,0 +1,16 @@
+{
+  "debug": false,
+  "tmp_dir": "tmp",
+  "gcs": {
+    "credentials_json": "configs/filehub-410615-59318fc24022.json",
+    "bucket_name": "files_raw_data"
+  },
+  "mongo": {
+    "uri": "mongodb://mongo:27017/",
+    "db_name": "filehub",
+    "user": "",
+    "password": ""
+  },
+  "DEFAULT_FILES_PER_PAGE": 10,
+  "LOGS_FOLDER": "logs"
+}

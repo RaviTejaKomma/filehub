@@ -1,0 +1,14 @@
+__pycache__
+*.pyc
+
+# virtualenv
+.venv
+venv/
+filehub-venv
+logs/
+tmp/
+
+# project settings
+.idea/
+venv
+__pycache__/
