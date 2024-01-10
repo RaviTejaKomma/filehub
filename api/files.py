@@ -96,6 +96,13 @@ def read_file(file_id):
         file_metadata = file_metadata_db.get(file_id)
         if file_metadata:
             desired_filename = f"{file_metadata['file_name']}.{file_metadata['file_ext']}"
+
+            """
+            We can download the blob from the cloud storage and directly send the contents of a file to the client
+            or else 
+            We can generate a Signed URL for the blob and send it as response to the client. By clicking on it
+            the file will be downloaded 
+            """
             # tmp_dir = config['tmp_dir']
             # download_file_path = os.path.join(
             #     os.getcwd(),
@@ -110,7 +117,7 @@ def read_file(file_id):
 
             signed_url = gcs_handler.generate_download_signed_url(config['gcs']['bucket_name'],
                                                                   file_metadata["blob_name"], desired_filename)
-            response = {"status": True, "error": "", "message": "Successfully uploaded the file",
+            response = {"status": True, "error": "", "message": "Successfully read the file",
                         "data": {"signed_url": signed_url, "metadata": file_metadata}}
             return Response(response=json.dumps(response), status=200, mimetype="application/json")
         else:
@@ -146,6 +153,7 @@ def update_file(file_id):
         if existing_metadata:
             new_file_metadata = existing_metadata.copy()
 
+            # Check if the 'file' key is in the request.files dict
             if 'file' in request.files and request.files['file']:
                 f = request.files['file']
                 tmp_file_path = save_file_to_tmp_dir(f)
@@ -157,6 +165,7 @@ def update_file(file_id):
                 })
                 gcs_handler.upload_blob(config['gcs']['bucket_name'], tmp_file_path, existing_metadata["blob_name"])
 
+            # Check if 'file_name' is provided
             new_file_name = request.form.get('file_name')
             if new_file_name:
                 new_file_metadata.update({
