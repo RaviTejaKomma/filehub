@@ -23,6 +23,8 @@ The `filehub` directory holds the application logic
 
 The `static` directory contains HTML, CSS and JS files responsible for the UI of the application.
 
+Find detailed information about the FileHub APIs in [API Documentation](./API_DOCUMENTATION.md).
+
 ## How to set up
 
 You can setup and run this application using docker or python virtual environment.
@@ -76,16 +78,23 @@ docker-compose up
 ```
 
 
-## FileHub backend verification
+## FileHub Backend
 
-The FileHub application is accessible at [localhost:5000](http://localhost:5000).
+The FileHub application is accessible at [localhost:5000](http://localhost:5000)
    
 To verify its status, you can use the following `curl` command to hit the health check API:
 ```bash
 curl -X GET 'localhost:5000'
 ```
 
-A successful response indicates that the **filehub** flask application is up and running.
+**Application Status:**
+A successful response indicates that the **FileHub** Flask application is up and running.
+
+**MongoDB Status:**
+MongoDB is configured to run on port 27017.
+
+**Note:**
+Ensure that no other services are currently using ports 5000 and 27017 before running the application.
 
 ## FileHub UI
 1. Navigate to the static directory: `cd static`
