@@ -1,4 +1,6 @@
-const BASE_URL = 'http://localhost:5000/api/v1/files';
+const HOST = "10.103.116.51"
+const PORT = "5000"
+const BASE_URL = `http://${HOST}:${PORT}/api/v1/files`;
 const UPLOAD_FILE_API = `${BASE_URL}/upload`
 
 toastr.options = {

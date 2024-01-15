@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filehub-deployment
+  labels:
+    type: backend
+spec:
+  selector:
+    matchLabels:
+      app: filehub
+  replicas: 3
+  template:
+    metadata:
+      name: filehub-tmpl
+      labels:
+        app: filehub
+    spec:
+      containers:
+        - name: filehub
+          image: filehub:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
